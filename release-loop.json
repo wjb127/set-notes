@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "release": {
+    "app_key": "set-notes",
+    "version": "1.0.0",
+    "build": "1",
+    "revision": "development-20261009"
+  },
+  "platforms": [
+    "android",
+    "ios"
+  ],
+  "authorization": {
+    "release": true,
+    "source": "Standing user weekday authorization; idea-995b500e196c"
+  },
+  "stores": {
+    "android": {
+      "identifier": "com.wjbapps.setnotes",
+      "admob": {
+        "app_id": "ca-app-pub-2803803669720807~9966906734",
+        "banner_id": "ca-app-pub-2803803669720807/8950258409",
+        "formats": [
+          "banner"
+        ]
+      }
+    },
+    "ios": {
+      "identifier": "com.wjbapps.setnotes",
+      "team_id": "9Q26686S8R",
+      "admob": {
+        "app_id": "ca-app-pub-2803803669720807~7681408767",
+        "banner_id": "ca-app-pub-2803803669720807/8911653392",
+        "formats": [
+          "banner"
+        ]
+      }
+    }
+  },
+  "watch": {},
+  "adapters": {},
+  "checkpoints": {
+    "ios_mode": "prepare_only",
+    "source_queue_id": "idea-995b500e196c",
+    "ios_upload_allowed": false,
+    "privacy_url": "https://wjb127.github.io/set-notes/privacy.html"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "Set Notes",
+  "apple_name": "Set Notes: Workout Notebook",
+  "subtitle": "Offline sets and rest timers",
+  "short_description": "Log workout sets offline, recover sessions and back up your history.",
+  "description": "Keep a clear workout notebook without an account. Start a blank session or reuse a saved routine. Search exercise names or add your own. Record weight, repetitions and notes for each independent set, mark warmups and track bodyweight sets. Copy your last values without overwriting completed work.\n\nEdits save on your device. Recover an interrupted workout and finish without a connection. Rest controls are separate from set inputs; optional automatic rest uses a saved end time. View dated history, edit past workouts and inspect exercise progress.\n\nSwitch between kg and lb with conversion. Training volume includes completed weighted work sets only, excluding warmups and bodyweight sets. Export or restore validated JSON backups to a destination you choose.\n\nAds appear outside active workouts, with regional privacy choices. No subscriptions, coaching, watch integration or health-account access. Set Notes is a logging tool, not medical advice.",
+  "keywords": "workout,sets,reps,weights,notebook,rest,offline,gym,log",
+  "privacy_url": "https://wjb127.github.io/set-notes/privacy.html",
+  "support_url": "https://wjb127.github.io/set-notes/"
+}
