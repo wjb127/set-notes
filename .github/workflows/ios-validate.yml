@@ -34,18 +34,18 @@ jobs:
           DEVICE_FAMILY: ${{ matrix.device }}
         run: |
           xcrun simctl list devices available --json > "$RUNNER_TEMP/devices.json"
-          DEVICE=$(python3 -c 'import json,os; d=json.load(open(os.environ["RUNNER_TEMP"]+"/devices.json")); rows=[(r,x) for r,xs in d["devices"].items() for x in xs if x.get("isAvailable") and x["name"].startswith(os.environ["DEVICE_FAMILY"])]; rows.sort(key=lambda row: ("iOS-18" not in row[0], "Pro Max" not in row[1]["name"] if os.environ["DEVICE_FAMILY"]=="iPhone" else "13-inch" not in row[1]["name"],row[0],row[1]["name"])); print(rows[0][1]["udid"])')
+          DEVICE=$(python3 -c 'import json,os; d=json.load(open(os.environ["RUNNER_TEMP"]+"/devices.json")); rows=[(r,x) for r,xs in d["devices"].items() for x in xs if x.get("isAvailable") and x["name"].startswith(os.environ["DEVICE_FAMILY"])]; rows.sort(key=lambda row: ("iOS-18" not in row[0], row[1]["name"]!="iPhone 17 Pro" if os.environ["DEVICE_FAMILY"]=="iPhone" else "13-inch" not in row[1]["name"],row[0],row[1]["name"])); print(rows[0][1]["udid"])')
           cat "$RUNNER_TEMP/devices.json"
           xcrun simctl boot "$DEVICE" || true
           xcrun simctl bootstatus "$DEVICE" -b
           open -a Simulator
           echo "IOS_DEVICE=$DEVICE" >> "$GITHUB_ENV"
       - name: Exercise core native UI and capture actual English screens
-        timeout-minutes: 10
+        timeout-minutes: 15
         run: |
           mkdir -p store-assets/ios-evidence
           python3 -c 'from pathlib import Path; p=Path("test_driver/screenshots.dart"); p.write_text(p.read_text().replace("store-assets/screenshots", "store-assets/ios-evidence"))'
-          flutter drive --no-start-paused --verbose --driver=test_driver/screenshots.dart --target=integration_test/native_flow_test.dart -d "$IOS_DEVICE" > "$RUNNER_TEMP/native-drive.log" 2>&1 &
+          flutter drive --no-start-paused --timeout=660 --verbose --driver=test_driver/screenshots.dart --target=integration_test/native_flow_test.dart -d "$IOS_DEVICE" > "$RUNNER_TEMP/native-drive.log" 2>&1 &
           DRIVE_PID=$!
           while kill -0 "$DRIVE_PID" 2>/dev/null; do tail -n 8 "$RUNNER_TEMP/native-drive.log"; sleep 20; done
           wait "$DRIVE_PID"
@@ -56,7 +56,9 @@ jobs:
         run: |
           gh release view native-evidence >/dev/null 2>&1 || gh release create native-evidence --draft --title 'Native validation evidence' --notes 'Automated native UI checks and screenshots.'
           mkdir -p store-assets/ios-evidence
+          xcrun simctl io "$IOS_DEVICE" screenshot "store-assets/ios-evidence/${{ matrix.device }}-simulator-final.png" || true
+          xcrun simctl spawn "$IOS_DEVICE" log show --last 3m --style compact --predicate 'process == "Runner"' > "store-assets/ios-evidence/${{ matrix.device }}-runtime.log" 2>&1 || true
           cp "$RUNNER_TEMP/native-drive.log" "store-assets/ios-evidence/${{ matrix.device }}-drive.log" 2>/dev/null || true
-          for f in store-assets/ios-evidence/*.png; do if test -f "$f"; then mv "$f" "store-assets/ios-evidence/${{ matrix.device }}-$(basename "$f")"; fi; done
+          for f in store-assets/ios-evidence/0*.png; do if test -f "$f"; then mv "$f" "store-assets/ios-evidence/${{ matrix.device }}-$(basename "$f")"; fi; done
           for f in store-assets/ios-evidence/*; do if test -f "$f"; then gh release upload native-evidence "$f" --clobber; fi; done
 
