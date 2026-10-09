@@ -56,7 +56,7 @@ void main() {
     await t.pumpAndSettle();
     expect(find.text('Squat'), findsOneWidget);
     await binding.takeScreenshot('01-workout-en');
-    await t.ensureVisible(find.text('Finish workout'));
+    await t.scrollUntilVisible(find.text('Finish workout'), 300, scrollable: find.byType(Scrollable).first);
     await t.pumpAndSettle();
     await t.tap(find.text('Finish workout'));
     await t.pumpAndSettle();
