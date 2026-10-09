@@ -40,6 +40,8 @@ void main() {
     await t.enterText(find.byType(TextFormField).at(0), '60');
     await t.enterText(find.byType(TextFormField).at(1), '8');
     await t.testTextInput.receiveAction(TextInputAction.done);
+    FocusManager.instance.primaryFocus?.unfocus();
+    await t.pump(const Duration(seconds: 1));
     await t.pumpAndSettle();
     await t.ensureVisible(find.text('Complete set'));
     await t.pumpAndSettle();
@@ -55,8 +57,14 @@ void main() {
     );
     await t.pumpAndSettle();
     expect(find.text('Squat'), findsOneWidget);
+    await t.drag(find.byType(Scrollable).first, const Offset(0, -160));
+    await t.pump(const Duration(seconds: 1));
     await binding.takeScreenshot('01-workout-en');
-    await t.scrollUntilVisible(find.text('Finish workout'), 300, scrollable: find.byType(Scrollable).first);
+    await t.scrollUntilVisible(
+      find.text('Finish workout'),
+      300,
+      scrollable: find.byType(Scrollable).first,
+    );
     await t.pumpAndSettle();
     await t.tap(find.text('Finish workout'));
     await t.pumpAndSettle();

@@ -134,6 +134,7 @@ class _SetNotesState extends State<SetNotes> {
   @override
   Widget build(BuildContext context) => MaterialApp(
     title: S.title,
+    debugShowCheckedModeBanner: false,
     theme: ThemeData(
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff285b52)),
