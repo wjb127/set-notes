@@ -1,0 +1,26 @@
+Set Notes 1.0.0 build 1 — upload preparation, 2026-10-09
+
+Identifiers: Android and iOS com.wjbapps.setnotes. Apple team 9Q26686S8R.
+Compiled source: f382a44b327beca4094c4bbca6e598af29f3f888.
+Native test harness improvement: 52ba111 (no compiled app changes).
+
+Android signed file: build/app/outputs/bundle/release/app-release.aab
+SHA256: c7b44f55f59ab90115dfd8a3cd2b6cf3430112f8ee35e8006d526f2306821ab6
+Package/version/code confirmed by bundletool. jarsigner verified. All 12 native libraries passed 16 KiB ELF alignment checks.
+Production app ID: ca-app-pub-2803803669720807~9966906734
+Production banner: ca-app-pub-2803803669720807/8950258409
+Google Play app does not yet exist in the observed account. Prepared creation form awaits current policy declaration / US export agreement action-time confirmation. After confirmation, query existing apps and versions first, then create only if still absent and upload this exact hash. Use the currently verified Chrome session or supported Aside upload procedure; verify server reception rather than treating a button click as upload success. Complete English listing, data safety, fitness declaration, ad-ID declaration and target audience from actual code/SDK evidence. Prepare IARC answers accurately, request only actual new action-time terms when presented. Save all available countries/regions and future-region distribution, then verify saved review reception and actual publication separately.
+
+iOS signed file: build/ios/ipa/setnotes.ipa
+SHA256: bd18e33db39385b33c642c165fadf7a2584ad69162f9c8163e530c3bd9df7bb2
+CI 37869931007 archive/export and signature verification succeeded. Local hash equals the private GitHub draft asset's server SHA256. Bundle ID/version/build verified inside IPA. Existing distribution certificate 7MBF2RDN73 was preserved; this app uses the additive Set Notes AppStore 2026 profile. No existing app identity/key/profile was revoked or replaced.
+Production app ID: ca-app-pub-2803803669720807~7681408767
+Production banner: ca-app-pub-2803803669720807/8911653392
+Apple scheduled mode is PREPARATION ONLY. Do not run Transporter/altool/upload CI, upload to TestFlight/App Store Connect, submit/re-submit for review, or change publication. No Set Notes Apple upload occurred. Wait for direct approval explicitly naming Set Notes and version/build before any actual upload, and act only within that approval. Do not repeat identical Apple approval requests or Telegram reminders.
+Official Apple territories preparation returned 175 entries with no next page on 2026-10-09. This is a plan, not saved app availability. Enable all available and future territories on a separately authorized release and verify actual server saving.
+
+English listing: store-assets/listing-en.json
+Support/privacy: https://wjb127.github.io/set-notes/ and https://wjb127.github.io/set-notes/privacy.html
+English native screenshots: store-assets/screenshots; iPhone/iPad evidence saved separately after successful native tests.
+Region choices: EU/UK/Switzerland UMP + US state privacy messages published for both new Set Notes AdMob apps, iOS IDFA explanation published. Notebook use remains independent of ad consent/ad loading. Publishing can take up to one hour to propagate; do not claim measured monetization readiness before public store linking and actual verification.
+Review answers: store-assets/apple-review-prepared.md. Do not invent beta participants, user feedback, client relationships or unique-market claims.
