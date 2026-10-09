@@ -37,8 +37,18 @@ void main() {
     await t.pumpAndSettle();
     await t.tap(find.text('Squat'));
     await t.pumpAndSettle();
-    await t.enterText(find.byType(TextFormField).at(0), '60');
-    await t.enterText(find.byType(TextFormField).at(1), '8');
+    final setId = b.active!.exercises.single.sets.single.id;
+    final weightField = find.byKey(ValueKey('$setId-kg'));
+    final repsField = find.byKey(ValueKey('$setId-reps'));
+    await t.scrollUntilVisible(
+      weightField,
+      240,
+      scrollable: find.byType(Scrollable).first,
+    );
+    await t.pumpAndSettle();
+    await t.enterText(weightField, '60');
+    await t.ensureVisible(repsField);
+    await t.enterText(repsField, '8');
     await t.testTextInput.receiveAction(TextInputAction.done);
     FocusManager.instance.primaryFocus?.unfocus();
     await t.pump(const Duration(seconds: 1));
